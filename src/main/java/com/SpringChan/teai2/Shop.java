@@ -1,14 +1,14 @@
 package com.SpringChan.teai2;
 
-import java.text.DecimalFormat;
-import java.util.Random;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 
 public interface Shop {
-    DecimalFormat df = new DecimalFormat("#.##");
-    void addProduct(String name, int price);
+    void addProduct(String name, BigDecimal price);
     void checkBasket();
-    default double generatePrice(){
-        Random random = new Random();
-        return random.nextDouble()*250+50;
+    default BigDecimal generatePrice(){
+        BigDecimal bigDecimal = new BigDecimal(Math.random()*250+50);
+        return bigDecimal.setScale(2, RoundingMode.HALF_UP);
     }
 }
